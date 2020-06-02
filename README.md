@@ -1,2 +1,2 @@
 # Dijkstra-Algrithme
-Implementation de l'algorithme dijkstra en langage C
+Implementation of dijkstra algorithm in C

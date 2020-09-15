@@ -1,6 +1,5 @@
 /* DATE LE 01/05/2017
  * OBJET : mini-projet Le Chemin plus court(ISGA SETTAT)
- * Auteur : El-HAJJAM OUSSAMA HAFID
  * Algorithme: Dijkstra
  */
 #include<stdio.h>
@@ -23,12 +22,13 @@ int main()
     printf("*            REALISE PAR :                                  *\n");
     printf("*                                                           *\n");
     printf("*               - HAFID MOHAMED                             *\n");
-    printf("*               - El-HAJJAM OUSSAMA                         *\n");
+    printf("*                 -  El-HAJJAM OUSSAMA                      *\n");
+    printf("*                   -  BOULKOL OUMAIMA                      *\n");
     printf("*                                                           *\n");
     printf("*            ENCADRE PAR :                                  *\n");
     printf("*                    - Mr. EL GHOLAMI KHALID                *\n");
     printf("*************************************************************\n\n");
-    printf("\ntapper un choix:\n- Lire les donnees depuis un fichier de configuration tapez 1\n- Entrer les donnees manuellement tapez 2\n");
+    printf("\ntapper 1 pour lancée à partir du ficher de configuration:");
     scanf("%d",&j);
     if(j==1)
     {
@@ -46,7 +46,7 @@ int main()
     printf("\n\n**********************************************\n\n");
         affichage_du_graphe(point,nbrPoint);
         printf("\n");
-        affichage_lisons(nbrPoint,Mlis);
+        //affichage_lisons(nbrPoint,Mlis);
     for(i=0;i<nbrPoint;i++)
     {
         distance[i]=INFINITY;
@@ -69,7 +69,7 @@ int main()
         printf("\nIndice destination : %d\n",indice(Mlis,nbrPoint,Destinataire));
         des = indice(Mlis,nbrPoint,Destinataire);
 
-        dijkst_ra(Mlis,djikstra,nbrPoint,distance,inSet,q,parent,s,des);
+        djikst_ra(Mlis,djikstra,nbrPoint,distance,inSet,q,parent,s,des);
 
         printf("\nVoulez changer La Destination :\n * Si OUI tapez ---> 1\n * Si NON tapez ---> 2\n");
         printf("\nDnez Votre choix : ");

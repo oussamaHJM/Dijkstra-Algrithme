@@ -45,6 +45,20 @@ void affichage_du_graphe(noeud H[20],int nbrPoint)  /* l' Affichage du tableau H
 }
 
 
+void affichage_Matrice_lison(int nbrPoint,noeud Mlis[20][20])
+{
+    int i,j;
+     for(i=0;i<nbrPoint+1;i++)
+    {
+       for(j=0;j<nbrPoint+1;j++)
+       {
+           printf("%d    ",Mlis[i][j].l); /* Affichage des ID*/
+       }
+        printf("\n");
+    }
+}
+
+
 void affichage_lisons(int nbrPoint,noeud Mlis[20][20]) /* Affichage de toutes les liaisons du graph */
 {
     int i,j;
@@ -122,6 +136,7 @@ void creation_des_liaisons(noeud H[20], int nbrPoint,noeud Mlis[20][20]) /* crea
 
     affichage_lisons(nbrPoint,Mlis); /* Affichage des liaisons */
     calcul_poid(nbrPoint,Mlis);   /* Calcule poid de chaque noeud */
+    affichage_Matrice_lison(nbrPoint,Mlis); /* Affichage des liasons dans le meme Matrice */
 }
 
 
@@ -155,7 +170,7 @@ int Extraire_indice_Min(int nbrPoint,float distance[20],int inSet[20],int q[20])
     float min = INFINITY;
     for(i=0;i<nbrPoint;i++)
     {
-        if(distance[i] <= min && inSet[i] == 0)
+        if(distance[i] <= min &&inSet[i] == 0)
         {
             min = distance[i];
             ps = i;
@@ -208,7 +223,7 @@ int indice(noeud Mlis[20][20],int nbrPoint,int point) /* transformer un ID a un 
 }
 
 
-void dijkst_ra(noeud Mlis[20][20],float djikstra[20][20],int nbrPoint,float distance[20],int inSet[20],int q[20],int parent[20],int indiceS,int indiceD )
+void djikst_ra(noeud Mlis[20][20],float djikstra[20][20],int nbrPoint,float distance[20],int inSet[20],int q[20],int parent[20],int indiceS,int indiceD )
 {
     int i,j,u;
     int empty = check_empty(nbrPoint,q);
@@ -228,16 +243,16 @@ void dijkst_ra(noeud Mlis[20][20],float djikstra[20][20],int nbrPoint,float dist
         printf("\n");
     }
 
-    while(empty != VRAI)  /* tester si l ensemble Q est Vide  */
+    while(empty != VRAI)  /* tester si l ensemble des noeuds Q est Vide  */
     {
         u = Extraire_indice_Min(nbrPoint,distance,inSet,q);
-        inSet[u] = 1;   /* on note que le noeud est parcouru */
-        q[u] = 0;       /* suprimmer ce dernier de de l'ensemble Q */
+        inSet[u] = 1;   /* on note que le 1er noeud est parcouru */
+        q[u] = 0;       /* suprimmer ce dernier de de lensemble Q */
         for(i=0;i<nbrPoint;i++)
         {
             if(djikstra[u][i] > 0)
             {
-                if(distance[u] + djikstra[u][i] < distance[i])    /* comparer la derniere distance minimal qu' on a trouver avec une nouvelle distance */
+                if(distance[u] + djikstra[u][i] < distance[i])    /* comparer les distances des noeuds voisin du noeuds courant */
                 {
                     distance[i] = distance[u] + djikstra[u][i];
                     parent[i] = u + 1;                /* Enregistrer le parent du noeud courant  */
@@ -266,7 +281,6 @@ int Fichier_Config(noeud H[20],noeud Mlis[20][20])
     int nbrPoint=0;
     noeud c;
     int i=0,h=0,ii=0,j,id1,l,p,m,n,chh=0;
-    printf("13----23----33\n \\   /       |\n  \\_/	     |\n  / \\	     |\n /   \\       |\n12----22----32\n \\   /       |\n  \\_/	     |\n  / \\	     |\n /   \\       |\n11   21-----31\n");
     FILE * fichier;
     fichier=fopen("Fichier_Config.txt","r");
             if(fichier==NULL)
@@ -328,8 +342,7 @@ int Fichier_Config(noeud H[20],noeud Mlis[20][20])
             }
         fclose(fichier);
         calcul_poid(nbrPoint,Mlis);
-        printf("nombre de poinds = %d  ",nbrPoint);
-
+        printf("nombre =%d  ",nbrPoint);
     return nbrPoint;
 }
 
